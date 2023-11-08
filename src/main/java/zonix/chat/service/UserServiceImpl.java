@@ -19,8 +19,9 @@ public class UserServiceImpl implements UserService{
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService{
         User user = new User();
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         Role role = roleRepository.findByName("ROLE_ADMIN");
         if (role == null) {
