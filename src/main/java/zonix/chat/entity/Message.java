@@ -1,6 +1,6 @@
 package zonix.chat.entity;
 
-import lombok.*;
+        import lombok.*;
 
 @Getter
 @Setter

@@ -12,6 +12,7 @@ import zonix.chat.entity.User;
 import zonix.chat.service.UserService;
 
 @Controller
+
 public class AuthController {
 
     private UserService userService;
@@ -21,9 +22,10 @@ public class AuthController {
     }
 
     @GetMapping("/index")
-    public String home(){
+    public String showIndexForm() {
         return "index";
     }
+
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -49,7 +51,7 @@ public class AuthController {
         }
 
         userService.saveUser(userDto);
-        return "redirect:/register?success";
+        return "/index";
     }
 
 
